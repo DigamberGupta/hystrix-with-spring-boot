@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@HystrixCommand(fallbackMethod = "longExecutionTime",
 					commandProperties = { @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1"),
+							// the request will fail as the thread timeout is 1 millisecond change it to 1000 (1 sec) so that it would not fail
 							@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
 							@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "20000"),
 							@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000") })
