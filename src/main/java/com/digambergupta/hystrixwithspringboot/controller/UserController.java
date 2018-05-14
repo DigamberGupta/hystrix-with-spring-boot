@@ -19,6 +19,7 @@ import com.digambergupta.hystrixwithspringboot.service.api.UserService;
  */
 @RestController
 @RequestMapping("/users")
+@SuppressWarnings("unused")
 public class UserController {
 
 	private UserService userService;
@@ -31,8 +32,6 @@ public class UserController {
 	@RequestMapping("list")
 	private HttpEntity<List<UserDTO>> getUsers() {
 
-		List<UserDTO> userDTOList = userService.getUsers();
-
-		return ResponseEntity.ok(userDTOList);
+		return ResponseEntity.ok(userService.getUsers());
 	}
 }

@@ -11,6 +11,7 @@ import com.digambergupta.hystrixwithspringboot.resources.UserDTO;
  * Data converter class which convert the employee data to UserDTO data
  *
  * @author Digamber Gupta
+ * @since 1.0-SNAPSHOT
  */
 public class UserDataConverter {
 

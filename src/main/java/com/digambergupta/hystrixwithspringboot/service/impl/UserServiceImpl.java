@@ -1,7 +1,6 @@
 package com.digambergupta.hystrixwithspringboot.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.digambergupta.hystrixwithspringboot.converter.UserDataConverter;
 import com.digambergupta.hystrixwithspringboot.dao.UserRepository;
-import com.digambergupta.hystrixwithspringboot.entity.User;
 import com.digambergupta.hystrixwithspringboot.resources.UserDTO;
 import com.digambergupta.hystrixwithspringboot.service.api.UserService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -27,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(final UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
@@ -41,6 +39,12 @@ public class UserServiceImpl implements UserService {
 		return UserDataConverter.convertAndJoinList(userRepository.findAll()).orElseThrow(null);
 	}
 
+	/**
+	 * fallback method used by HystrixCommand annotation
+	 *
+	 * @return List of UserDTO
+	 */
+	@SuppressWarnings("unused")
 	public List<UserDTO> longExecutionTime() {
 		System.out.println("Fallback...");
 		List<UserDTO> userDTOList = new ArrayList<>();

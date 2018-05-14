@@ -6,8 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity class for user table
+ *
+ * @author Digamber Gupta
+ * @see User
+ * @since 1.0-SNAPSHOT
+ */
 @Entity
 @Table(name = "user")
+@SuppressWarnings("unused")
 public class User {
 
 	@Id
